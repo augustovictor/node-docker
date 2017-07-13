@@ -1,0 +1,16 @@
+version: '2'
+services:
+  books:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node_modules/.bin/nodemon --exec npm start
+    environment:
+        NODE_ENV: development
+    ports:
+        # reach from outside/container (application)
+        - 7000:3000
+    volumes:
+        # system/container
+        - .:/home/app/books
+        - /home/app/books/node_modules
